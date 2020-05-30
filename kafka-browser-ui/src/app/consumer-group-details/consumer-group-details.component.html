@@ -1,0 +1,76 @@
+<div *ngIf="consumerGroup !== undefined">
+    <h2>{{consumerGroup.name}}</h2>
+    <table>
+        <tr>
+            <th>Total Lag</th>
+            <th>Lag increase per second</th>
+            <th>Message consumtion per second</th>
+        </tr>
+        <tr>
+            <td>{{lagSum}}</td>
+            <td>{{dataCollector.lagPerSec}}</td>
+            <td>{{dataCollector.messagesPerSec}}</td>
+        </tr>
+    </table>
+    <h2>Partitions</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Events count</th>
+            <th>Lag</th>
+        </tr>
+        <tr *ngFor="let partitionInfo of consumerGroup.partitions">
+            <td>{{partitionInfo.partition.name}}</td>
+            <td>{{partitionInfo.partition.lastLog}}</td>
+            <td>{{partitionInfo.lag}}</td>
+        </tr>
+    </table>
+
+    <h2>Consumer group state</h2>
+    <div *ngIf="consumerGroupMetaData !== undefined">
+        <table>
+            <tr>
+                <th>State</th>
+                <th>Partition assignor</th>
+                <th>Coordinator</th>
+            </tr>
+            <tr>
+                <td>{{consumerGroupMetaData.consumerGroupState}}</td>
+                <td>{{consumerGroupMetaData.partitionAssignor}}</td>
+                <td>{{consumerGroupMetaData.coordinator}}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>Member id</th>
+                <th>Client id</th>
+                <th>Host</th>
+                <th>Assign partitions</th>
+            </tr>
+            <tr *ngFor="let memberDescription of consumerGroupMetaData.memberDescriptionList">
+                <td>{{memberDescription.memberId}}</td>
+                <td>{{memberDescription.clientId}}</td>
+                <td>{{memberDescription.host}}</td>
+                <td>{{joinPartitionAssigments(memberDescription.assignment.topicPartitions)}}</td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="consumerGroupMetaData === undefined">
+        <p>Loading...</p>
+    </div>
+
+    <h2>Topics</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let topic of consumerGroup.topicNames">
+            <td><a routerLink="/{{environment}}/topics/{{topic}}">{{topic}}</a></td>
+        </tr>
+    </table>
+    <app-confirmation-modal (confirmationResult)="onConfirmation($event)"
+        message="Do you want to delete {{consumerGroup.name}} consumer group?" buttonName="Delete">
+    </app-confirmation-modal>
+</div>

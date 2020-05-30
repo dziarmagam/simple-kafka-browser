@@ -1,0 +1,11 @@
+[
+  {
+    "name": "test",
+    "bootstrapServer": "localhost:9092",
+    "isModifiable": "true"
+  },
+  {
+    "name": "test2",
+    "bootstrapServer": "localhost:9093"
+  }
+]

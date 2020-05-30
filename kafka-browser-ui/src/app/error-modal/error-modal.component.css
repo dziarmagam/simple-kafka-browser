@@ -1,0 +1,10 @@
+.error-modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: #ff4747c9;
+  margin: 15% 0 0 10% ;
+  border: 1px solid #888;
+  width: 80%; 
+}

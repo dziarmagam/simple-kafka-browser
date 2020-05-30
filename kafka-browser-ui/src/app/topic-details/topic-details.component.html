@@ -1,0 +1,45 @@
+<div *ngIf="topic !== undefined">
+    <div class="topic-info">
+        <p><strong>Topic name:</strong> {{topic.name}}</p>
+        <p><strong>Topic events count:</strong> {{topic.messages}}</p>
+        <p><strong>Topic partitions count:</strong> {{topic.partitionCount}}</p>
+        <p><strong>Messages per second:</strong> {{messagesPerSec}}</p>
+    </div>
+
+    <h2>Partitions</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Events count</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let partition of topic.partitions">
+            <td>{{partition.name}}</td>
+            <td>{{partition.lastLog}}</td>
+            <td><button (click)="getLastMessage(partition)">Last message</button></td>
+        </tr>
+    </table>
+
+    <div id="lastMessageBox">
+        <p>{{message}}</p>
+    </div>
+
+    <h2>Consumer groups</h2>
+    <div *ngIf="consumerGroups !== undefined">
+        <table>
+            <tr>
+                <th>Name</th>
+            </tr>
+            <tr *ngFor="let consumerGroup of consumerGroups">
+                <td><a routerLink="/{{environment}}/consumer-groups/{{consumerGroup}}">{{consumerGroup}}</a></td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="consumerGroups === undefined">
+        <p>Loading...</p>
+    </div>
+
+    <app-confirmation-modal (confirmationResult)="onDeleteConfirmation($event)"
+        message="Do you want to delete {{topic.name}} topic ?" buttonName="Delete">
+    </app-confirmation-modal>
+</div>

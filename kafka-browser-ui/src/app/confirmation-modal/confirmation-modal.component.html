@@ -1,0 +1,10 @@
+<div class="confirmation">
+    <button (click)="showModal()">{{buttonName}}</button>
+    <div *ngIf="!hidden" class="confirmation-modal">
+        <div class="window">
+            <p>{{message}}</p>
+            <button (click)="emitResult(true)">Accept</button>
+            <button (click)="emitResult(false)">Cancel</button>
+        </div>
+    </div>
+</div>

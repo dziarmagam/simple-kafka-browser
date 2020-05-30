@@ -1,0 +1,18 @@
+<div>
+    <div class="filter">
+        <label for="filter-input" class="filter-label">Filter:</label>
+        <input id="filter-input" class="filter-input" (keyup)="onFilterInput($event)"/>
+    </div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Messages</th>
+            <th>Partitions</th>
+        </tr>
+        <tr *ngFor="let topic of displayTopics">
+            <td><a routerLink="{{topic.name}}">{{topic.name}}</a></td>
+            <td>{{topic.messages}}</td>
+            <td>{{topic.partitionCount}}</td>
+        </tr>
+    </table>
+</div>

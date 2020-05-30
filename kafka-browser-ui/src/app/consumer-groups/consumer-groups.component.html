@@ -1,0 +1,16 @@
+<div>
+    <div class="filter">
+        <label for="filter-input" class="filter-label">Filter:</label>
+        <input id="filter-input" class="filter-input" (keyup)="onFilterInput($event)"/>
+    </div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Topics</th>
+        </tr>
+        <tr *ngFor="let consumerGroup of displayGroups">
+            <td><a routerLink="{{consumerGroup.name}}">{{consumerGroup.name}}</a></td>
+            <td>{{consumerGroup.topicNames}}</td>
+        </tr>
+    </table>
+</div>

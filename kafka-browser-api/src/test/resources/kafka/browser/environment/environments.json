@@ -1,0 +1,12 @@
+[
+  {
+    "bootstrapServer": "testServer1",
+    "name": "name1",
+    "isModifiable": false
+  },
+  {
+    "bootstrapServer": "testServer2",
+    "name": "name2",
+    "isModifiable": true
+  }
+]

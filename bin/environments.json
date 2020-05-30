@@ -1,0 +1,7 @@
+[
+  {
+    "name": "local-environment",
+    "bootstrapServer": "localhost:9092",
+	"isModifiable":false
+  }
+]

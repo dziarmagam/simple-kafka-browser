@@ -1,0 +1,140 @@
+:root {
+  box-sizing: border-box;
+  --gb-color: #202125;
+  --items-bg-color: #a7584a;
+  --text-color: #cccccc;
+  --table-border-color: #a7584a;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  color: var(--text-color);
+}
+
+body {
+  background-color: var(--gb-color);
+}
+
+h2 {
+  text-align: center;
+}
+
+.main-container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.main-container h1 {
+  text-align: center;
+}
+
+.main-nav {
+  display: flex;
+
+  background-color: var(--items-bg-color);
+  /* background-color: #5f4b44;*/
+}
+
+.main-nav > a {
+  text-decoration: none;
+  color: var(--text-color);
+  background-color: var(--items-bg-color);
+
+  display: block;
+  padding: 1em 2em;
+}
+
+.main-nav > a:hover {
+  background-color: #cc877a;
+}
+
+app-kafka-environment {
+  margin-left: auto;
+  text-decoration: none;
+  color: var(--text-color);
+  background-color: var(--items-bg-color);
+  padding: 1em 2em;
+}
+
+app-kafka-environment select {
+  background-color: var(--items-bg-color);
+  padding: 0em 0.25em 0 0.25em;
+  text-decoration: none;
+  color: var(--text-color);
+  margin-left: 0.25em;
+}
+
+table {
+  width: 100%;
+  border-width: 2px;
+  border-color: var(--table-border-color);
+  border-style: solid;
+  border-collapse: collapse;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+table td,
+table th {
+  border-width: 1px;
+  border-color: var(--table-border-color);
+  border-style: solid;
+  padding: 3px;
+}
+
+table tr:nth-child(even) {
+}
+
+.filter {
+  background-color: var(--items-bg-color);
+  color: var(--text-color);
+  margin-top: 0.3em;
+  display: flex;
+  align-content: center;
+}
+
+.filter .filter-label {
+  padding: 0.5em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.609);
+}
+
+.filter .filter-input {
+  color: var(--text-color);
+  background-color: var(--items-bg-color);
+  border-style: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.609);
+  padding: 0.5em;
+  flex: 1;
+}
+
+button {
+  background-color: #a7584a;
+  /* padding: 1em; */
+  height: 3.5em;
+  width: 10em;
+  border: none;
+}
+
+button:hover {
+  background-color: #cc877a;
+}
+
+button:active {
+  background-color: #cc877a;
+  transform: scale3d(0.95, 0.95, 0.95);
+}
+
+.delete-button {
+  margin-top: 0.3em;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

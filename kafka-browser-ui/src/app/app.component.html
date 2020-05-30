@@ -1,0 +1,15 @@
+<div *ngIf="applicationLoaded">
+    <nav class="main-nav">
+        <a routerLink="{{environmentService.getCurrentEnvironment()}}/topics">Topics</a>
+        <a routerLink="{{environmentService.getCurrentEnvironment()}}/consumer-groups">Consumer Group</a>
+        <app-kafka-environment></app-kafka-environment>
+    </nav>
+    <div class="main-container">
+        <router-outlet></router-outlet>
+        <app-error-modal></app-error-modal>
+    </div>
+</div>
+
+<div *ngIf="!applicationLoaded">
+    <p>Loading...</p>
+</div>

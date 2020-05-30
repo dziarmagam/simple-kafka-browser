@@ -1,0 +1,8 @@
+<div class="environment">
+    <label for="environment">Environments</label>
+        <select (change)="onSelectChange($event)" id="environment">
+            <option class="environment-option" [selected]="env === selectedEnv" *ngFor="let env of environments">
+                {{env}}
+            </option>
+        </select>
+</div>
