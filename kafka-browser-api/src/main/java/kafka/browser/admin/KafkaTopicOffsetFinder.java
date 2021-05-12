@@ -1,10 +1,10 @@
 package kafka.browser.admin;
 
+import org.apache.kafka.clients.consumer.OffsetAndTimestamp;
+import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import kafka.browser.connection.KafkaConsumerPool;
@@ -43,6 +43,18 @@ public class KafkaTopicOffsetFinder {
                             .filter(part -> part.topic().equals(offsets.getKey()))
                             .collect(Collectors.toList())))
                     .collect(Collectors.toList());
+        }
+    }
+
+    public Map<TopicPartition, OffsetAndTimestamp> findOffsetByTime(String topic, long timestamp) {
+        try (var kafkaConsumer = kafkaConsumerPool.getConsumerConnection()) {
+            List<PartitionInfo> partitionInfos = kafkaConsumer.partitionsFor(topic);
+            var partitions = partitionInfos.stream()
+                    .map(it -> new TopicPartition(it.topic(), it.partition()))
+                    .collect(Collectors.toList());
+            var map = new HashMap<TopicPartition, Long>();
+            partitions.forEach(tp -> map.put(tp, timestamp));
+            return kafkaConsumer.offsetsForTimes(map);
         }
     }
 

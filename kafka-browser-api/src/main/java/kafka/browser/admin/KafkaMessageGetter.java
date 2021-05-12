@@ -7,6 +7,7 @@ import org.apache.kafka.common.TopicPartition;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -17,6 +18,7 @@ import kafka.browser.connection.KafkaConsumerPool;
 public class KafkaMessageGetter {
 
     private final KafkaConsumerPool kafkaConsumerPool;
+    private final Long bytesReturnLimit = 1024L * 1024L * 1024L * 4L;
 
     public KafkaMessageGetter(KafkaConsumerPool kafkaConsumerPool) {
         this.kafkaConsumerPool = kafkaConsumerPool;
@@ -54,12 +56,14 @@ public class KafkaMessageGetter {
         }
     }
 
-    public List<byte[]> getMessagesWithKey(TopicPartition topicPartition, String key, Instant time, Long endOffset) {
+    public List<byte[]> getMessages(Function<ConsumerRecord<byte[], byte[]>, Boolean> recordPicker,
+                                    TopicPartition topicPartition,
+                                    Long startOffset,
+                                    Long endOffset) {
         try (var kafkaConsumer = kafkaConsumerPool.getConsumerConnection()) {
-            var offsetAndTime = kafkaConsumer.offsetsForTimes(Map.of(topicPartition, time.getEpochSecond()));
-            var offset = offsetAndTime.get(topicPartition).offset();
-            kafkaConsumer.seek(topicPartition, offset);
+            kafkaConsumer.seek(topicPartition, startOffset);
             var lastRecord = 0L;
+            var returnSize = 0L;
             var messages = new ArrayList<byte[]>();
             do {
                 ConsumerRecords<byte[], byte[]> poll = kafkaConsumer.poll(Duration.ofSeconds(1));
@@ -67,13 +71,36 @@ public class KafkaMessageGetter {
                 ConsumerRecord<byte[], byte[]> record = null;
                 while (recordIterator.hasNext()) {
                     record = recordIterator.next();
-                    if (new String(record.key()).equals(key)) {
+                    if (recordPicker.apply(record)) {
                         messages.add(record.value());
+                        returnSize += record.value().length;
                     }
                 }
+                if(returnSize > bytesReturnLimit) throw new MessageToBig(bytesReturnLimit);
                 if (record != null) lastRecord = record.offset();
             } while (lastRecord < endOffset || lastRecord != 0);
             return messages;
         }
     }
 }
+
+class MessageToBig extends RuntimeException {
+    public MessageToBig(long limit){
+        super("Messages exited limit of " + limit);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

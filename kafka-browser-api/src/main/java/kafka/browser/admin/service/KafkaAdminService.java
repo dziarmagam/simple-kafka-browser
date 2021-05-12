@@ -3,6 +3,7 @@ package kafka.browser.admin.service;
 import org.apache.kafka.common.TopicPartition;
 
 import java.io.Closeable;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,4 +36,6 @@ public interface KafkaAdminService extends Closeable {
     List<String> getConsumerGroupsForGivenTopic(String topicName);
 
     List<String> getTopicNames();
+
+    List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to);
 }

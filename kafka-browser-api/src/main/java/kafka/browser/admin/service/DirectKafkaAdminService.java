@@ -1,17 +1,21 @@
 package kafka.browser.admin.service;
 
 import org.apache.kafka.clients.admin.ConsumerGroupListing;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.OffsetAndTimestamp;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.TopicPartitionInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import kafka.browser.admin.KafkaMessageGetter;
@@ -77,7 +81,7 @@ public class DirectKafkaAdminService implements KafkaAdminService {
 
     private Long getPartitionEndOffset(Map<String, List<KafkaTopicOffsetFinder.OffsetInfoWithTopic>> topicToOffsetMap, String topic, int partitionNumber) {
         KafkaTopicOffsetFinder.OffsetInfoWithTopic offsetInfoWithTopic = topicToOffsetMap.get(topic).get(0);
-        if(partitionNumber >= offsetInfoWithTopic.offsets.size()){
+        if (partitionNumber >= offsetInfoWithTopic.offsets.size()) {
             LOGGER.warn("Partition number greater then offset, partition: {}, offsets: {}", partitionNumber, offsetInfoWithTopic);
             return 0L;
         }
@@ -169,7 +173,8 @@ public class DirectKafkaAdminService implements KafkaAdminService {
 
     @Override
     public void deleteConsumerGroup(String consumerGroupName) {
-        if (!allowModification) throw new ActionNotAllowed(String.format("consumer group %s deletion", consumerGroupName));
+        if (!allowModification)
+            throw new ActionNotAllowed(String.format("consumer group %s deletion", consumerGroupName));
         kafkaAdminAdapter.deleteConsumerGroup(consumerGroupName);
     }
 
@@ -187,6 +192,26 @@ public class DirectKafkaAdminService implements KafkaAdminService {
     @Override
     public Optional<String> getMessage(TopicPartition topicPartition, long offset) {
         return kafkaMessageGetter.getMessage(topicPartition, offset);
+    }
+
+    @Override
+    public List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
+
+        Function<ConsumerRecord<byte[], byte[]>, Boolean> messagePicker = getMessagePicker(messageQuery);
+        var fromOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, from.getEpochSecond());
+        var toOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, to.getEpochSecond());
+        Set<TopicPartition> topicPartitions = fromOffsets.keySet();
+        return topicPartitions.stream()
+                .map(it -> kafkaMessageGetter.getMessages(messagePicker, it, fromOffsets.get(it).offset(), toOffsets.get(it).offset())).flatMap(it -> it.stream().map(String::new))
+                .collect(Collectors.toList());
+    }
+
+    private Function<ConsumerRecord<byte[], byte[]>, Boolean> getMessagePicker(MessageQuery messageQuery) {
+        switch (messageQuery.queryType) {
+            case Message: return it -> new String(it.value()).contains(messageQuery.value);
+            case Key: return it -> new String(it.key()).contains(messageQuery.value);
+            default: throw new RuntimeException("unsupported message query");
+        }
     }
 
     @Override

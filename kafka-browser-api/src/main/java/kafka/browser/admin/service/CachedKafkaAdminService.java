@@ -4,6 +4,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executors;
@@ -115,6 +116,11 @@ public class CachedKafkaAdminService implements KafkaAdminService {
     @Override
     public List<String> getTopicNames() {
         return this.kafkaAdminService.getTopicNames();
+    }
+
+    @Override
+    public List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
+        return this.kafkaAdminService.findMessage(topic, messageQuery, from, to);
     }
 
     @Override
