@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopicComponent } from './topic/topic.component';
@@ -12,6 +12,7 @@ import { ConsumerGroupDetailsComponent } from './consumer-group-details/consumer
 import { KafkaEnvironmentComponent } from './kafka-environment/kafka-environment.component';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { MessageSenderComponent } from './message-sender/message-sender.component';
 
 const appRoutes: Routes = [
   { path: ':environment/topics', component: TopicComponent },
@@ -29,10 +30,12 @@ const appRoutes: Routes = [
     ConsumerGroupDetailsComponent,
     KafkaEnvironmentComponent,
     ErrorModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    MessageSenderComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(

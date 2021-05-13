@@ -37,5 +37,7 @@ public interface KafkaAdminService extends Closeable {
 
     List<String> getTopicNames();
 
+    void sendMessage(String topic, String key, String message);
+
     List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to);
 }

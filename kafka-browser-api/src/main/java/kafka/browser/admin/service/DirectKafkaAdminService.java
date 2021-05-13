@@ -21,6 +21,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import kafka.browser.admin.KafkaMessageGetter;
+import kafka.browser.admin.KafkaMessageSender;
 import kafka.browser.admin.KafkaTopicOffsetFinder;
 import kafka.browser.admin.adapter.DirectKafkaAdminAdapter;
 import kafka.browser.http.consumergroup.ConsumerGroupDto;
@@ -35,16 +36,19 @@ public class DirectKafkaAdminService implements KafkaAdminService {
     private final KafkaTopicOffsetFinder kafkaTopicOffsetFinder;
     private final KafkaMessageGetter kafkaMessageGetter;
     private final DirectKafkaAdminAdapter kafkaAdminAdapter;
+    private final KafkaMessageSender kafkaMessageSender;
     private final Boolean allowModification;
     private final static Logger LOGGER = LoggerFactory.getLogger(DirectKafkaAdminAdapter.class);
 
     public DirectKafkaAdminService(KafkaTopicOffsetFinder kafkaTopicOffsetFinder,
                                    KafkaMessageGetter kafkaMessageGetter,
                                    DirectKafkaAdminAdapter kafkaAdminAdapter,
+                                   KafkaMessageSender kafkaMessageSender,
                                    Boolean allowModification) {
         this.kafkaTopicOffsetFinder = kafkaTopicOffsetFinder;
         this.kafkaMessageGetter = kafkaMessageGetter;
         this.kafkaAdminAdapter = kafkaAdminAdapter;
+        this.kafkaMessageSender = kafkaMessageSender;
         this.allowModification = allowModification;
     }
 
@@ -171,6 +175,11 @@ public class DirectKafkaAdminService implements KafkaAdminService {
     @Override
     public List<String> getTopicNames() {
         return new ArrayList<>(kafkaAdminAdapter.getTopicNames());
+    }
+
+    @Override
+    public void sendMessage(String topic, String key, String message) {
+        kafkaMessageSender.sendMessage(topic, key, message);
     }
 
     @Override

@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import kafka.browser.admin.KafkaMessageGetter;
+import kafka.browser.admin.KafkaMessageSender;
 import kafka.browser.admin.KafkaTopicOffsetFinder;
 import kafka.browser.admin.adapter.DirectKafkaAdminAdapter;
 import kafka.browser.http.consumergroup.ConsumerGroupDto;
@@ -33,8 +34,9 @@ class DirectKafkaAdminServiceTest {
     private KafkaTopicOffsetFinder kafkaTopicOffsetFinder = mock(KafkaTopicOffsetFinder.class);
     private KafkaMessageGetter kafkaMessageGetter = mock(KafkaMessageGetter.class);
     private DirectKafkaAdminAdapter kafkaAdminAdapter = mock(DirectKafkaAdminAdapter.class);
+    private KafkaMessageSender kafkaMessageSender = mock(KafkaMessageSender.class);
     private DirectKafkaAdminService directKafkaAdminService = new DirectKafkaAdminService(
-            kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, true
+            kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, kafkaMessageSender, true
     );
 
 
@@ -216,7 +218,7 @@ class DirectKafkaAdminServiceTest {
     void shouldThrowActionNotAllowExceptionWhenDeleteIsNotAllowed() {
         //given
         DirectKafkaAdminService directKafkaAdminService =
-                new DirectKafkaAdminService(kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, false);
+                new DirectKafkaAdminService(kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, kafkaMessageSender, false);
         //then
         try {
             directKafkaAdminService.deleteConsumerGroup("consumerGroup");
@@ -230,7 +232,7 @@ class DirectKafkaAdminServiceTest {
     void shouldThrowActionNotAllowExceptionWhenDeleteTopicIsNotAllowed() {
         //given
         DirectKafkaAdminService directKafkaAdminService =
-                new DirectKafkaAdminService(kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, false);
+                new DirectKafkaAdminService(kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, kafkaMessageSender, false);
         //when
         try {
             directKafkaAdminService.deleteTopic("topicName");

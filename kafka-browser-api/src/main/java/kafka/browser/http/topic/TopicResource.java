@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.Base64;
 import java.util.List;
 
 import kafka.browser.admin.KafkaAdminServiceManager;
@@ -65,6 +66,11 @@ class TopicResource {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.TEXT_PLAIN);
         return new ResponseEntity<>(message.toString(), httpHeaders, HttpStatus.OK);
+    }
+
+    @PostMapping("/{topicName}/send")
+    void sendMessage(@PathVariable String topicName, @PathVariable String env, @RequestBody MessageDto messageDto) {
+        kafkaAdminServiceManager.getService(env).sendMessage(topicName, messageDto.getKey(), messageDto.decodeContent());
     }
 
 }

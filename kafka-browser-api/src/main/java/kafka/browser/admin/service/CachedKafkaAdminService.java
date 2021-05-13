@@ -124,6 +124,11 @@ public class CachedKafkaAdminService implements KafkaAdminService {
     }
 
     @Override
+    public void sendMessage(String topic, String key, String message) {
+        kafkaAdminService.sendMessage(topic, key, message);
+    }
+
+    @Override
     @PreDestroy
     public void close() throws IOException {
         executor.shutdown();

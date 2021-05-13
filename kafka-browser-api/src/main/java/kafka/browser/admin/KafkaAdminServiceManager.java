@@ -59,7 +59,8 @@ public class KafkaAdminServiceManager implements Closeable {
         KafkaMessageGetter kafkaMessageGetter = new KafkaMessageGetter(kafkaConsumerPool);
         AdminClient adminClient = new AdminClientCreator(environment).getAdminClient();
         DirectKafkaAdminAdapter kafkaAdminAdapter = new DirectKafkaAdminAdapter(adminClient);
-        DirectKafkaAdminService directKafkaAdminService = new DirectKafkaAdminService(kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, environment.isModifiable());
+        KafkaMessageSender kafkaMessageSender = new KafkaMessageSender(environment);
+        DirectKafkaAdminService directKafkaAdminService = new DirectKafkaAdminService(kafkaTopicOffsetFinder, kafkaMessageGetter, kafkaAdminAdapter, kafkaMessageSender, environment.isModifiable());
         connectionsList.add(new KafkaConnections(kafkaConsumerPool, adminClient));
         return new CachedKafkaAdminService(directKafkaAdminService);
     }

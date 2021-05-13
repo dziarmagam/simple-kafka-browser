@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { TopicService } from '../topic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pull, unsubscribe } from '../utils/pulling';
@@ -20,6 +20,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   message: string;
   environment: string;
   messagesPerSec: number;
+  messageOffset = '0';
   private lastUpdate: number;
   private topicUpdateSubscription: Subscription;
   private consumerGroupsUpdateSubscription: Subscription;
@@ -45,7 +46,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
           this.lastUpdate = Date.now();
           this.topic = topic;
         }
-        ).subscribe();
+      ).subscribe();
 
       this.consumerGroupsUpdateSubscription = pull(getConsumerGroups,
         cGroups => this.consumerGroups = cGroups, this.CONSUMER_GROUP_PULL_INTERVAL_MS).subscribe();
@@ -69,6 +70,10 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
         error => {
           this.errorService.showError(error.error);
         });
+  }
+
+  updateInput(event) {
+    this.messageOffset +=  event.target.value;
   }
 
   onDeleteConfirmation(shouldDelete: boolean) {
