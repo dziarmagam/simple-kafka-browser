@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
 import java.util.List;
 
 import kafka.browser.admin.KafkaAdminServiceManager;
@@ -54,6 +57,14 @@ class TopicResource {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.TEXT_PLAIN);
         return new ResponseEntity<>(message, httpHeaders, HttpStatus.OK);
+    }
+
+    @PostMapping("/{topicName}/find")
+    ResponseEntity<String> getLastMessage(@PathVariable String topicName, @PathVariable String env, @RequestBody MessageQueryDto messageQueryDto) {
+        List<String> message = kafkaAdminServiceManager.getService(env).findMessage(topicName, messageQueryDto.toMessageQuery(), messageQueryDto.getSince(), Instant.now());
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+        return new ResponseEntity<>(message.toString(), httpHeaders, HttpStatus.OK);
     }
 
 }

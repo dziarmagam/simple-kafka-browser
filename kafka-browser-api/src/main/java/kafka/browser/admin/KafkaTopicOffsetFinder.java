@@ -32,7 +32,7 @@ public class KafkaTopicOffsetFinder {
         }
     }
 
-    public List<OffsetInfoWithTopic> findLastOffsets(List<TopicPartition> partitions) {
+    public List<OffsetInfoWithTopic> findLastOffsets(Collection<TopicPartition> partitions) {
         try (var kafkaConsumer = kafkaConsumerPool.getConsumerConnection()) {
             Map<TopicPartition, Long> results = kafkaConsumer.endOffsets(partitions);
             return results.entrySet().stream()

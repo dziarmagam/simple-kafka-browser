@@ -61,12 +61,13 @@ public class KafkaMessageGetter {
                                     Long startOffset,
                                     Long endOffset) {
         try (var kafkaConsumer = kafkaConsumerPool.getConsumerConnection()) {
+            kafkaConsumer.assign(List.of(topicPartition));
             kafkaConsumer.seek(topicPartition, startOffset);
             var lastRecord = 0L;
             var returnSize = 0L;
             var messages = new ArrayList<byte[]>();
             do {
-                ConsumerRecords<byte[], byte[]> poll = kafkaConsumer.poll(Duration.ofSeconds(1));
+                ConsumerRecords<byte[], byte[]> poll = kafkaConsumer.poll(Duration.ofMillis(50));
                 var recordIterator = poll.iterator();
                 ConsumerRecord<byte[], byte[]> record = null;
                 while (recordIterator.hasNext()) {
@@ -78,7 +79,7 @@ public class KafkaMessageGetter {
                 }
                 if(returnSize > bytesReturnLimit) throw new MessageToBig(bytesReturnLimit);
                 if (record != null) lastRecord = record.offset();
-            } while (lastRecord < endOffset || lastRecord != 0);
+            } while (lastRecord < endOffset || lastRecord == 0);
             return messages;
         }
     }

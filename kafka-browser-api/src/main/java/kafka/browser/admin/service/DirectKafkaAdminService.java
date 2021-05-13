@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -198,11 +200,22 @@ public class DirectKafkaAdminService implements KafkaAdminService {
     public List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
 
         Function<ConsumerRecord<byte[], byte[]>, Boolean> messagePicker = getMessagePicker(messageQuery);
-        var fromOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, from.getEpochSecond());
-        var toOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, to.getEpochSecond());
+        var fromOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, from.toEpochMilli());
+        var toOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, to.toEpochMilli());
+        Map<TopicPartition, Long> endOffsets = new HashMap<>();
+        if(toOffsets.values().contains(null)){
+            var offsets = kafkaTopicOffsetFinder.findLastOffsets(toOffsets.keySet()).get(0).offsets;
+            for (int i = 0; i < offsets.size(); i++) {
+                endOffsets.put(new TopicPartition(topic, i), offsets.get(i));
+            }
+        }
         Set<TopicPartition> topicPartitions = fromOffsets.keySet();
         return topicPartitions.stream()
-                .map(it -> kafkaMessageGetter.getMessages(messagePicker, it, fromOffsets.get(it).offset(), toOffsets.get(it).offset())).flatMap(it -> it.stream().map(String::new))
+                .map(it -> {
+                    if (fromOffsets.get(it) == null) return Collections.<byte[]>emptyList();
+                    var toOffset = toOffsets.get(it) == null ? endOffsets.get(it) : toOffsets.get(it).offset();
+                    return kafkaMessageGetter.getMessages(messagePicker, it, fromOffsets.get(it).offset(), toOffset);
+                }).flatMap(it -> it.stream().map(String::new))
                 .collect(Collectors.toList());
     }
 
