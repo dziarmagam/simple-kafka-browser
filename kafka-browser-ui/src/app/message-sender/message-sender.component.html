@@ -1,0 +1,10 @@
+<div class="message-sender">
+    <label for="topics">Topics</label>
+    <select (change)="onSelectChange($event)" id="topics">
+        <option class="topics-option" [selected]="topic === selectedTopic.name" *ngFor="let topic of topics">
+            {{topic.name}}
+        </option>
+    </select>
+
+
+</div>
