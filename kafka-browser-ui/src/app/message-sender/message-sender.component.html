@@ -1,10 +1,22 @@
 <div class="message-sender">
     <label for="topics">Topics</label>
-    <select (change)="onSelectChange($event)" id="topics">
-        <option class="topics-option" [selected]="topic === selectedTopic.name" *ngFor="let topic of topics">
+    <select [(ngModel)]="selectedTopic" id="topics">
+        <option class="topics-option" [selected]="topic === selectedTopic" *ngFor="let topic of topics">
             {{topic.name}}
         </option>
     </select>
+    <div>
+
+        <label>Key</label>
+        <input [(ngModel)]="key" type="text">
+    </div>
+    <div>
+
+        <label>Message</label>
+        <input [(ngModel)]="message" type="text">
+    </div>
+    <button class="button" type="submit" (click)="onMessageInput()">Send</button>
+
 
 
 </div>

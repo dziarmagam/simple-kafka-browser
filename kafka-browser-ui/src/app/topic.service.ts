@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { KafkaEnvironmentService } from './kafka-environment.service';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,14 @@ export class TopicService {
   deleteTopic(topic: string, environment: string): Observable<any> {
     const url = this.serverUrl + environment + '/topics/' + topic;
     return this.httpClient.delete(url);
+  }
+
+  sendMessage(topic: string, environment: string, key: string, message: string): Observable<any> {
+    const url = this.serverUrl + environment + '/topics/' + topic + "/send";
+    return this.httpClient.post(url, {
+      key: key,
+      value: btoa(message)
+    });
   }
 
 }
