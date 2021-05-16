@@ -1,6 +1,7 @@
 package kafka.browser.http.topic;
 
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.TopicPartition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
-import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import kafka.browser.admin.KafkaAdminServiceManager;
 
@@ -61,11 +62,12 @@ class TopicResource {
     }
 
     @PostMapping("/{topicName}/find")
-    ResponseEntity<String> getLastMessage(@PathVariable String topicName, @PathVariable String env, @RequestBody MessageQueryDto messageQueryDto) {
-        List<String> message = kafkaAdminServiceManager.getService(env).findMessage(topicName, messageQueryDto.toMessageQuery(), messageQueryDto.getSince(), Instant.now());
+    ResponseEntity<List<RecordDto>> getLastMessage(@PathVariable String topicName, @PathVariable String env, @RequestBody MessageQueryDto messageQueryDto) {
+        List<ConsumerRecord<byte[], byte[]>> records = kafkaAdminServiceManager.getService(env).findMessage(topicName, messageQueryDto.toMessageQuery(),
+                Instant.ofEpochMilli(messageQueryDto.getFrom()), Instant.ofEpochMilli(messageQueryDto.getTo()));
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.TEXT_PLAIN);
-        return new ResponseEntity<>(message.toString(), httpHeaders, HttpStatus.OK);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<>(records.stream().map(RecordDto::from).collect(Collectors.toList()), httpHeaders, HttpStatus.OK);
     }
 
     @PostMapping("/{topicName}/send")

@@ -2,7 +2,6 @@ package kafka.browser.admin.service;
 
 import org.apache.kafka.clients.admin.ConsumerGroupListing;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.OffsetAndTimestamp;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.TopicPartitionInfo;
 import org.slf4j.Logger;
@@ -17,13 +16,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.annotation.PreDestroy;
 
 import kafka.browser.admin.KafkaMessageGetter;
 import kafka.browser.admin.KafkaMessageSender;
 import kafka.browser.admin.KafkaTopicOffsetFinder;
 import kafka.browser.admin.adapter.DirectKafkaAdminAdapter;
+import kafka.browser.admin.service.MessageQuery.KeyMessageQueryValue;
 import kafka.browser.http.consumergroup.ConsumerGroupDto;
 import kafka.browser.http.consumergroup.ConsumerGroupDto.PartitionInfo;
 import kafka.browser.http.consumergroup.ConsumerGroupMetaDataDto;
@@ -38,6 +43,7 @@ public class DirectKafkaAdminService implements KafkaAdminService {
     private final DirectKafkaAdminAdapter kafkaAdminAdapter;
     private final KafkaMessageSender kafkaMessageSender;
     private final Boolean allowModification;
+    private final ExecutorService searchMessageExecutor = Executors.newFixedThreadPool(16);
     private final static Logger LOGGER = LoggerFactory.getLogger(DirectKafkaAdminAdapter.class);
 
     public DirectKafkaAdminService(KafkaTopicOffsetFinder kafkaTopicOffsetFinder,
@@ -51,6 +57,7 @@ public class DirectKafkaAdminService implements KafkaAdminService {
         this.kafkaMessageSender = kafkaMessageSender;
         this.allowModification = allowModification;
     }
+
 
     @Override
     public List<String> getConsumerGroupsNames() {
@@ -206,13 +213,13 @@ public class DirectKafkaAdminService implements KafkaAdminService {
     }
 
     @Override
-    public List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
+    public List<ConsumerRecord<byte[], byte[]>> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
 
         Function<ConsumerRecord<byte[], byte[]>, Boolean> messagePicker = getMessagePicker(messageQuery);
         var fromOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, from.toEpochMilli());
         var toOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, to.toEpochMilli());
         Map<TopicPartition, Long> endOffsets = new HashMap<>();
-        if(toOffsets.values().contains(null)){
+        if(toOffsets.containsValue(null)){
             var offsets = kafkaTopicOffsetFinder.findLastOffsets(toOffsets.keySet()).get(0).offsets;
             for (int i = 0; i < offsets.size(); i++) {
                 endOffsets.put(new TopicPartition(topic, i), offsets.get(i));
@@ -220,24 +227,29 @@ public class DirectKafkaAdminService implements KafkaAdminService {
         }
         Set<TopicPartition> topicPartitions = fromOffsets.keySet();
         return topicPartitions.stream()
-                .map(it -> {
-                    if (fromOffsets.get(it) == null) return Collections.<byte[]>emptyList();
+                .flatMap(it -> {
+                    if (fromOffsets.get(it) == null) return Stream.empty();
                     var toOffset = toOffsets.get(it) == null ? endOffsets.get(it) : toOffsets.get(it).offset();
-                    return kafkaMessageGetter.getMessages(messagePicker, it, fromOffsets.get(it).offset(), toOffset);
-                }).flatMap(it -> it.stream().map(String::new))
+                    return kafkaMessageGetter.getMessages(messagePicker, it, fromOffsets.get(it).offset(), toOffset).stream();
+                })
                 .collect(Collectors.toList());
     }
 
     private Function<ConsumerRecord<byte[], byte[]>, Boolean> getMessagePicker(MessageQuery messageQuery) {
         switch (messageQuery.queryType) {
-            case Message: return it -> new String(it.value()).contains(messageQuery.value);
-            case Key: return it -> new String(it.key()).contains(messageQuery.value);
+            case Message: return it -> new String(it.value()).contains((String)messageQuery.value);
+            case Key: return it -> new String(it.key()).contains((String)messageQuery.value);
+            case KeyAndMessage: return it -> {
+                KeyMessageQueryValue value = (KeyMessageQueryValue) messageQuery.value;
+                return new String(it.key()).contains(value.key) && new String(it.value()).contains(value.message);
+            };
             default: throw new RuntimeException("unsupported message query");
         }
     }
 
     @Override
     public void close() {
+        searchMessageExecutor.shutdownNow();
         kafkaAdminAdapter.close();
     }
 }

@@ -1,5 +1,6 @@
 package kafka.browser.admin.service;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.TopicPartition;
 
 import java.io.Closeable;
@@ -39,5 +40,5 @@ public interface KafkaAdminService extends Closeable {
 
     void sendMessage(String topic, String key, String message);
 
-    List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to);
+    List<ConsumerRecord<byte[], byte[]>> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to);
 }

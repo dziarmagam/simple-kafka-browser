@@ -1,5 +1,6 @@
 package kafka.browser.admin.service;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.TopicPartition;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -119,7 +120,7 @@ public class CachedKafkaAdminService implements KafkaAdminService {
     }
 
     @Override
-    public List<String> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
+    public List<ConsumerRecord<byte[], byte[]>> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
         return this.kafkaAdminService.findMessage(topic, messageQuery, from, to);
     }
 

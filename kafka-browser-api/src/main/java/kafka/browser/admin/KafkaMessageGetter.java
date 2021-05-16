@@ -56,7 +56,7 @@ public class KafkaMessageGetter {
         }
     }
 
-    public List<byte[]> getMessages(Function<ConsumerRecord<byte[], byte[]>, Boolean> recordPicker,
+    public List<ConsumerRecord<byte[], byte[]>> getMessages(Function<ConsumerRecord<byte[], byte[]>, Boolean> recordPicker,
                                     TopicPartition topicPartition,
                                     Long startOffset,
                                     Long endOffset) {
@@ -65,7 +65,7 @@ public class KafkaMessageGetter {
             kafkaConsumer.seek(topicPartition, startOffset);
             var lastRecord = 0L;
             var returnSize = 0L;
-            var messages = new ArrayList<byte[]>();
+            var messages = new ArrayList<ConsumerRecord<byte[], byte[]>>();
             do {
                 ConsumerRecords<byte[], byte[]> poll = kafkaConsumer.poll(Duration.ofMillis(50));
                 var recordIterator = poll.iterator();
@@ -73,7 +73,7 @@ public class KafkaMessageGetter {
                 while (recordIterator.hasNext()) {
                     record = recordIterator.next();
                     if (recordPicker.apply(record)) {
-                        messages.add(record.value());
+                        messages.add(record);
                         returnSize += record.value().length;
                     }
                 }

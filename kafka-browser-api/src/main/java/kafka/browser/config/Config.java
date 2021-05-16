@@ -11,7 +11,7 @@ public class Config {
     private String environmentFilePath;
     @Value("${client.id:skb-client}")
     private String clientId;
-    @Value("${connection.pool.size:10}")
+    @Value("${connection.pool.size:30}")
     private Integer connectionPoolSize;
     @Value("${server.port:17511}")
     private Integer serverPort;

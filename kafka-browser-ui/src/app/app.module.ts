@@ -20,7 +20,8 @@ const appRoutes: Routes = [
   { path: ':environment/topics/:name', component: TopicDetailsComponent },
   { path: ':environment/consumer-groups', component: ConsumerGroupsComponent },
   { path: ':environment/consumer-groups/:name', component: ConsumerGroupDetailsComponent },
-  { path: ':environment/sender', component: MessageSenderComponent }
+  { path: ':environment/sender', component: MessageSenderComponent },
+  { path: ':environment/search', component: MessageSearchComponent }
 ];
 
 @NgModule({
