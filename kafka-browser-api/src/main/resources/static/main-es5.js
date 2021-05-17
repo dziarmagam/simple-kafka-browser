@@ -179,15 +179,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](6, "app-kafka-environment");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Message sender");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "a", 2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "router-outlet");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Message search");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](9, "app-error-modal");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "app-kafka-environment");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "router-outlet");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "app-error-modal");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -204,6 +216,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "", ctx_r0.environmentService.getCurrentEnvironment(), "/consumer-groups");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "", ctx_r0.environmentService.getCurrentEnvironment(), "/sender");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "", ctx_r0.environmentService.getCurrentEnvironment(), "/search");
       }
     }
 
@@ -261,7 +281,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       consts: [[4, "ngIf"], [1, "main-nav"], [3, "routerLink"], [1, "main-container"]],
       template: function AppComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, AppComponent_div_0_Template, 10, 2, "div", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, AppComponent_div_0_Template, 14, 4, "div", 0);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AppComponent_div_1_Template, 3, 0, "div", 0);
         }
@@ -335,82 +355,106 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ./app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _topic_topic_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _topic_topic_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./topic/topic.component */
     "./src/app/topic/topic.component.ts");
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
     /* harmony import */
 
 
-    var _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ./consumer-groups/consumer-groups.component */
     "./src/app/consumer-groups/consumer-groups.component.ts");
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
     /* harmony import */
 
 
-    var _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./topic-details/topic-details.component */
     "./src/app/topic-details/topic-details.component.ts");
     /* harmony import */
 
 
-    var _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./consumer-group-details/consumer-group-details.component */
     "./src/app/consumer-group-details/consumer-group-details.component.ts");
     /* harmony import */
 
 
-    var _kafka_environment_kafka_environment_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _kafka_environment_kafka_environment_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ./kafka-environment/kafka-environment.component */
     "./src/app/kafka-environment/kafka-environment.component.ts");
     /* harmony import */
 
 
-    var _error_modal_error_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _error_modal_error_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ./error-modal/error-modal.component */
     "./src/app/error-modal/error-modal.component.ts");
     /* harmony import */
 
 
-    var _confirmation_modal_confirmation_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _confirmation_modal_confirmation_modal_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ./confirmation-modal/confirmation-modal.component */
     "./src/app/confirmation-modal/confirmation-modal.component.ts");
+    /* harmony import */
+
+
+    var _message_sender_message_sender_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    /*! ./message-sender/message-sender.component */
+    "./src/app/message-sender/message-sender.component.ts");
+    /* harmony import */
+
+
+    var _message_search_message_search_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    /*! ./message-search/message-search.component */
+    "./src/app/message-search/message-search.component.ts");
 
     var appRoutes = [{
       path: ':environment/topics',
-      component: _topic_topic_component__WEBPACK_IMPORTED_MODULE_4__["TopicComponent"]
+      component: _topic_topic_component__WEBPACK_IMPORTED_MODULE_5__["TopicComponent"]
     }, {
       path: ':environment/topics/:name',
-      component: _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_8__["TopicDetailsComponent"]
+      component: _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_9__["TopicDetailsComponent"]
     }, {
       path: ':environment/consumer-groups',
-      component: _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_6__["ConsumerGroupsComponent"]
+      component: _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_7__["ConsumerGroupsComponent"]
     }, {
       path: ':environment/consumer-groups/:name',
-      component: _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_9__["ConsumerGroupDetailsComponent"]
+      component: _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_10__["ConsumerGroupDetailsComponent"]
+    }, {
+      path: ':environment/sender',
+      component: _message_sender_message_sender_component__WEBPACK_IMPORTED_MODULE_14__["MessageSenderComponent"]
+    }, {
+      path: ':environment/search',
+      component: _message_search_message_search_component__WEBPACK_IMPORTED_MODULE_15__["MessageSearchComponent"]
     }];
 
     var AppModule = function AppModule() {
@@ -419,20 +463,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
       type: AppModule,
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
     });
     AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({
       factory: function AppModule_Factory(t) {
         return new (t || AppModule)();
       },
       providers: [],
-      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)]]
+      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_8__["RouterModule"].forRoot(appRoutes)]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, {
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _topic_topic_component__WEBPACK_IMPORTED_MODULE_4__["TopicComponent"], _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_6__["ConsumerGroupsComponent"], _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_8__["TopicDetailsComponent"], _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_9__["ConsumerGroupDetailsComponent"], _kafka_environment_kafka_environment_component__WEBPACK_IMPORTED_MODULE_10__["KafkaEnvironmentComponent"], _error_modal_error_modal_component__WEBPACK_IMPORTED_MODULE_11__["ErrorModalComponent"], _confirmation_modal_confirmation_modal_component__WEBPACK_IMPORTED_MODULE_12__["ConfirmationModalComponent"]],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"]]
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _topic_topic_component__WEBPACK_IMPORTED_MODULE_5__["TopicComponent"], _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_7__["ConsumerGroupsComponent"], _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_9__["TopicDetailsComponent"], _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_10__["ConsumerGroupDetailsComponent"], _kafka_environment_kafka_environment_component__WEBPACK_IMPORTED_MODULE_11__["KafkaEnvironmentComponent"], _error_modal_error_modal_component__WEBPACK_IMPORTED_MODULE_12__["ErrorModalComponent"], _confirmation_modal_confirmation_modal_component__WEBPACK_IMPORTED_MODULE_13__["ConfirmationModalComponent"], _message_sender_message_sender_component__WEBPACK_IMPORTED_MODULE_14__["MessageSenderComponent"], _message_search_message_search_component__WEBPACK_IMPORTED_MODULE_15__["MessageSearchComponent"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_8__["RouterModule"]]
       });
     })();
     /*@__PURE__*/
@@ -442,10 +486,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
         args: [{
-          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _topic_topic_component__WEBPACK_IMPORTED_MODULE_4__["TopicComponent"], _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_6__["ConsumerGroupsComponent"], _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_8__["TopicDetailsComponent"], _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_9__["ConsumerGroupDetailsComponent"], _kafka_environment_kafka_environment_component__WEBPACK_IMPORTED_MODULE_10__["KafkaEnvironmentComponent"], _error_modal_error_modal_component__WEBPACK_IMPORTED_MODULE_11__["ErrorModalComponent"], _confirmation_modal_confirmation_modal_component__WEBPACK_IMPORTED_MODULE_12__["ConfirmationModalComponent"]],
-          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)],
+          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _topic_topic_component__WEBPACK_IMPORTED_MODULE_5__["TopicComponent"], _consumer_groups_consumer_groups_component__WEBPACK_IMPORTED_MODULE_7__["ConsumerGroupsComponent"], _topic_details_topic_details_component__WEBPACK_IMPORTED_MODULE_9__["TopicDetailsComponent"], _consumer_group_details_consumer_group_details_component__WEBPACK_IMPORTED_MODULE_10__["ConsumerGroupDetailsComponent"], _kafka_environment_kafka_environment_component__WEBPACK_IMPORTED_MODULE_11__["KafkaEnvironmentComponent"], _error_modal_error_modal_component__WEBPACK_IMPORTED_MODULE_12__["ErrorModalComponent"], _confirmation_modal_confirmation_modal_component__WEBPACK_IMPORTED_MODULE_13__["ConfirmationModalComponent"], _message_sender_message_sender_component__WEBPACK_IMPORTED_MODULE_14__["MessageSenderComponent"], _message_search_message_search_component__WEBPACK_IMPORTED_MODULE_15__["MessageSearchComponent"]],
+          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_8__["RouterModule"].forRoot(appRoutes)],
           providers: [],
-          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         }]
       }], null, null);
     })();
@@ -2054,6 +2098,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 
     function KafkaEnvironmentComponent_option_4_Template(rf, ctx) {
       if (rf & 1) {
@@ -2155,7 +2205,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.environments);
         }
       },
-      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"]],
+      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ɵangular_packages_forms_forms_x"]],
       styles: ["#environment[_ngcontent-%COMP%] {\r\n     border: none;\r\n     background-color: #923828;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAva2Fma2EtZW52aXJvbm1lbnQva2Fma2EtZW52aXJvbm1lbnQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtLQUNLLFlBQVk7S0FDWix5QkFBeUI7QUFDOUIiLCJmaWxlIjoic3JjL2FwcC9rYWZrYS1lbnZpcm9ubWVudC9rYWZrYS1lbnZpcm9ubWVudC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2Vudmlyb25tZW50IHtcclxuICAgICBib3JkZXI6IG5vbmU7XHJcbiAgICAgYmFja2dyb3VuZC1jb2xvcjogIzkyMzgyODtcclxufVxyXG4iXX0= */"]
     });
     /*@__PURE__*/
@@ -2173,6 +2223,533 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _kafka_environment_service__WEBPACK_IMPORTED_MODULE_1__["KafkaEnvironmentService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        }];
+      }, null);
+    })();
+    /***/
+
+  },
+
+  /***/
+  "./src/app/message-search/message-search.component.ts":
+  /*!************************************************************!*\
+    !*** ./src/app/message-search/message-search.component.ts ***!
+    \************************************************************/
+
+  /*! exports provided: MessageSearchComponent */
+
+  /***/
+  function srcAppMessageSearchMessageSearchComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "MessageSearchComponent", function () {
+      return MessageSearchComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _topic_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../topic.service */
+    "./src/app/topic.service.ts");
+    /* harmony import */
+
+
+    var _error_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../error-service.service */
+    "./src/app/error-service.service.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+
+    function MessageSearchComponent_option_4_Template(rf, ctx) {
+      if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 6);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+      }
+
+      if (rf & 2) {
+        var topic_r40 = ctx.$implicit;
+
+        var ctx_r39 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("selected", topic_r40 === ctx_r39.selectedTopic);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", topic_r40.name, " ");
+      }
+    }
+
+    var MessageSearchComponent =
+    /*#__PURE__*/
+    function () {
+      function MessageSearchComponent(topicService, errorService, route) {
+        _classCallCheck(this, MessageSearchComponent);
+
+        this.topicService = topicService;
+        this.errorService = errorService;
+        this.route = route;
+        this.topics = [];
+        this.message = "";
+        this.key = "";
+        this.foundMessage = "loading...";
+      }
+
+      _createClass(MessageSearchComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this8 = this;
+
+          this.route.params.subscribe(function (params) {
+            _this8.environment = params.environment;
+
+            _this8.topicService.getTopics(params.environment).subscribe(function (topics) {
+              _this8.topics = topics;
+              _this8.selectedTopic = topics[0].name;
+            });
+          });
+        }
+      }, {
+        key: "onMessageInput",
+        value: function onMessageInput() {
+          var _this9 = this;
+
+          if (this.key !== "" || this.message !== "") {
+            this.topicService.findMessage(this.selectedTopic, this.environment, this.key, this.message).subscribe(function (response) {
+              if (typeof response === 'object') {
+                _this9.foundMessage = JSON.stringify(response);
+              } else {
+                _this9.foundMessage = response;
+              }
+            }, function (error) {
+              _this9.errorService.showError(error.error);
+            });
+          }
+        }
+      }]);
+
+      return MessageSearchComponent;
+    }();
+
+    MessageSearchComponent.ɵfac = function MessageSearchComponent_Factory(t) {
+      return new (t || MessageSearchComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_topic_service__WEBPACK_IMPORTED_MODULE_1__["TopicService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_error_service_service__WEBPACK_IMPORTED_MODULE_2__["ErrorServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]));
+    };
+
+    MessageSearchComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+      type: MessageSearchComponent,
+      selectors: [["app-message-search"]],
+      decls: 17,
+      vars: 5,
+      consts: [[1, "message-finder"], ["for", "topics"], ["id", "topics", 3, "ngModel", "ngModelChange"], ["class", "topics-option", 3, "selected", 4, "ngFor", "ngForOf"], ["type", "text", 3, "ngModel", "ngModelChange"], ["type", "submit", 1, "button", 3, "click"], [1, "topics-option", 3, "selected"]],
+      template: function MessageSearchComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "label", 1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Topics");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "select", 2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function MessageSearchComponent_Template_select_ngModelChange_3_listener($event) {
+            return ctx.selectedTopic = $event;
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, MessageSearchComponent_option_4_Template, 2, 2, "option", 3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Key");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "input", 4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function MessageSearchComponent_Template_input_ngModelChange_8_listener($event) {
+            return ctx.key = $event;
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Message");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "input", 4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function MessageSearchComponent_Template_input_ngModelChange_12_listener($event) {
+            return ctx.message = $event;
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MessageSearchComponent_Template_button_click_13_listener() {
+            return ctx.onMessageInput();
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Search");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.selectedTopic);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.topics);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.key);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.message);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.foundMessage);
+        }
+      },
+      directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ɵangular_packages_forms_forms_x"]],
+      styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21lc3NhZ2Utc2VhcmNoL21lc3NhZ2Utc2VhcmNoLmNvbXBvbmVudC5jc3MifQ== */"]
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MessageSearchComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+          selector: 'app-message-search',
+          templateUrl: './message-search.component.html',
+          styleUrls: ['./message-search.component.css']
+        }]
+      }], function () {
+        return [{
+          type: _topic_service__WEBPACK_IMPORTED_MODULE_1__["TopicService"]
+        }, {
+          type: _error_service_service__WEBPACK_IMPORTED_MODULE_2__["ErrorServiceService"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+        }];
+      }, null);
+    })();
+    /***/
+
+  },
+
+  /***/
+  "./src/app/message-sender/message-sender.component.ts":
+  /*!************************************************************!*\
+    !*** ./src/app/message-sender/message-sender.component.ts ***!
+    \************************************************************/
+
+  /*! exports provided: MessageSenderComponent */
+
+  /***/
+  function srcAppMessageSenderMessageSenderComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "MessageSenderComponent", function () {
+      return MessageSenderComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! rxjs/operators */
+    "./node_modules/rxjs/_esm2015/operators/index.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _topic_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../topic.service */
+    "./src/app/topic.service.ts");
+    /* harmony import */
+
+
+    var _error_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../error-service.service */
+    "./src/app/error-service.service.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+
+    function MessageSenderComponent_option_4_Template(rf, ctx) {
+      if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 6);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+      }
+
+      if (rf & 2) {
+        var topic_r38 = ctx.$implicit;
+
+        var ctx_r37 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("selected", topic_r38 === ctx_r37.selectedTopic);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", topic_r38.name, " ");
+      }
+    }
+
+    var MessageSenderComponent =
+    /*#__PURE__*/
+    function () {
+      function MessageSenderComponent(topicService, errorService, route) {
+        _classCallCheck(this, MessageSenderComponent);
+
+        this.topicService = topicService;
+        this.errorService = errorService;
+        this.route = route;
+        this.topics = [];
+        this.message = "";
+        this.key = "";
+      }
+
+      _createClass(MessageSenderComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this10 = this;
+
+          this.route.params.subscribe(function (params) {
+            _this10.environment = params.environment;
+
+            _this10.topicService.getTopics(params.environment).subscribe(function (topics) {
+              _this10.topics = topics;
+              _this10.selectedTopic = topics[0].name;
+            });
+          });
+        }
+      }, {
+        key: "onMessageInput",
+        value: function onMessageInput() {
+          var _this11 = this;
+
+          if (this.key !== "" && this.message !== "") {
+            this.topicService.sendMessage(this.selectedTopic, this.environment, this.key, this.message).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (val) {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(val.error);
+            })).subscribe(function (error) {
+              if (error) {
+                _this11.errorService.showError(error);
+              } else {
+                console.log("Message was send");
+              }
+            });
+          }
+        }
+      }]);
+
+      return MessageSenderComponent;
+    }();
+
+    MessageSenderComponent.ɵfac = function MessageSenderComponent_Factory(t) {
+      return new (t || MessageSenderComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_topic_service__WEBPACK_IMPORTED_MODULE_3__["TopicService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_error_service_service__WEBPACK_IMPORTED_MODULE_4__["ErrorServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]));
+    };
+
+    MessageSenderComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+      type: MessageSenderComponent,
+      selectors: [["app-message-sender"]],
+      decls: 15,
+      vars: 4,
+      consts: [[1, "message-sender"], ["for", "topics"], ["id", "topics", 3, "ngModel", "ngModelChange"], ["class", "topics-option", 3, "selected", 4, "ngFor", "ngForOf"], ["type", "text", 3, "ngModel", "ngModelChange"], ["type", "submit", 1, "button", 3, "click"], [1, "topics-option", 3, "selected"]],
+      template: function MessageSenderComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "label", 1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Topics");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "select", 2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function MessageSenderComponent_Template_select_ngModelChange_3_listener($event) {
+            return ctx.selectedTopic = $event;
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, MessageSenderComponent_option_4_Template, 2, 2, "option", 3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Key");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "input", 4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function MessageSenderComponent_Template_input_ngModelChange_8_listener($event) {
+            return ctx.key = $event;
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Message");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "input", 4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function MessageSenderComponent_Template_input_ngModelChange_12_listener($event) {
+            return ctx.message = $event;
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MessageSenderComponent_Template_button_click_13_listener() {
+            return ctx.onMessageInput();
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Send");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.selectedTopic);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.topics);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.key);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.message);
+        }
+      },
+      directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ɵangular_packages_forms_forms_x"]],
+      styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21lc3NhZ2Utc2VuZGVyL21lc3NhZ2Utc2VuZGVyLmNvbXBvbmVudC5jc3MifQ== */"]
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MessageSenderComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+          selector: 'app-message-sender',
+          templateUrl: './message-sender.component.html',
+          styleUrls: ['./message-sender.component.css']
+        }]
+      }], function () {
+        return [{
+          type: _topic_service__WEBPACK_IMPORTED_MODULE_3__["TopicService"]
+        }, {
+          type: _error_service_service__WEBPACK_IMPORTED_MODULE_4__["ErrorServiceService"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]
         }];
       }, null);
     })();
@@ -2561,33 +3138,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.errorService = errorService;
         this.router = router;
         this.CONSUMER_GROUP_PULL_INTERVAL_MS = 30000;
+        this.messageOffset = '0';
       }
 
       _createClass(TopicDetailsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this8 = this;
+          var _this12 = this;
 
           this.route.params.subscribe(function (params) {
             var name = params.name;
-            _this8.environment = params.environment;
+            _this12.environment = params.environment;
 
             var getTopicDetails = function getTopicDetails() {
-              return _this8.topicService.getTopic(name, _this8.environment);
+              return _this12.topicService.getTopic(name, _this12.environment);
             };
 
             var getConsumerGroups = function getConsumerGroups() {
-              return _this8.topicService.getConsumerGroupsForTopic(name, _this8.environment);
+              return _this12.topicService.getConsumerGroupsForTopic(name, _this12.environment);
             };
 
-            _this8.topicUpdateSubscription = Object(_utils_pulling__WEBPACK_IMPORTED_MODULE_1__["pull"])(getTopicDetails, function (topic) {
-              _this8.messagesPerSec = _this8.calculateMessagePerSec(topic);
-              _this8.lastUpdate = Date.now();
-              _this8.topic = topic;
+            _this12.topicUpdateSubscription = Object(_utils_pulling__WEBPACK_IMPORTED_MODULE_1__["pull"])(getTopicDetails, function (topic) {
+              _this12.messagesPerSec = _this12.calculateMessagePerSec(topic);
+              _this12.lastUpdate = Date.now();
+              _this12.topic = topic;
             }).subscribe();
-            _this8.consumerGroupsUpdateSubscription = Object(_utils_pulling__WEBPACK_IMPORTED_MODULE_1__["pull"])(getConsumerGroups, function (cGroups) {
-              return _this8.consumerGroups = cGroups;
-            }, _this8.CONSUMER_GROUP_PULL_INTERVAL_MS).subscribe();
+            _this12.consumerGroupsUpdateSubscription = Object(_utils_pulling__WEBPACK_IMPORTED_MODULE_1__["pull"])(getConsumerGroups, function (cGroups) {
+              return _this12.consumerGroups = cGroups;
+            }, _this12.CONSUMER_GROUP_PULL_INTERVAL_MS).subscribe();
           });
         }
       }, {
@@ -2599,17 +3177,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getLastMessage",
         value: function getLastMessage(partition) {
-          var _this9 = this;
+          var _this13 = this;
 
           this.topicService.getLastMessage(this.topic.name, partition.partitionNumber, this.environment).subscribe(function (message) {
             if (typeof message === 'object') {
-              _this9.message = JSON.stringify(message);
+              _this13.message = JSON.stringify(message);
             } else {
-              _this9.message = message;
+              _this13.message = message;
             }
           }, function (error) {
-            _this9.errorService.showError(error.error);
+            _this13.errorService.showError(error.error);
           });
+        }
+      }, {
+        key: "updateInput",
+        value: function updateInput(event) {
+          this.messageOffset += event.target.value;
         }
       }, {
         key: "onDeleteConfirmation",
@@ -2621,15 +3204,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "delete",
         value: function _delete() {
-          var _this10 = this;
+          var _this14 = this;
 
           this.topicService.deleteTopic(this.topic.name, this.environment).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (val) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(val.error);
           })).subscribe(function (error) {
             if (error) {
-              _this10.errorService.showError(error);
+              _this14.errorService.showError(error);
             } else {
-              _this10.router.navigateByUrl('/' + _this10.environment + '/topics');
+              _this14.router.navigateByUrl('/' + _this14.environment + '/topics');
             }
           });
         }
@@ -2774,6 +3357,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function deleteTopic(topic, environment) {
           var url = this.serverUrl + environment + '/topics/' + topic;
           return this.httpClient.delete(url);
+        }
+      }, {
+        key: "sendMessage",
+        value: function sendMessage(topic, environment, key, message) {
+          var url = this.serverUrl + environment + '/topics/' + topic + "/send";
+          return this.httpClient.post(url, {
+            key: key,
+            value: btoa(message)
+          });
+        }
+      }, {
+        key: "findMessage",
+        value: function findMessage(topic, environment, key, message) {
+          var url = this.serverUrl + environment + '/topics/' + topic + "/find";
+
+          if (key === undefined || key.trim() === "") {
+            return this.httpClient.post(url, {
+              queryType: "Message",
+              value: btoa(message.trim()),
+              from: Date.now() - 1000 * 60 * 60,
+              to: Date.now()
+            });
+          } else if (message === undefined || message.trim() === "") {
+            return this.httpClient.post(url, {
+              queryType: "Key",
+              value: btoa(key.trim()),
+              from: Date.now() - 1000 * 60 * 60,
+              to: Date.now()
+            });
+          } else {
+            return this.httpClient.post(url, {
+              queryType: "KeyAndMessage",
+              value: {
+                key: btoa(key.trim()),
+                message: btoa(message.trim())
+              },
+              from: Date.now() - 1000 * 60 * 60,
+              to: Date.now()
+            });
+          }
         }
       }]);
 
@@ -2931,12 +3554,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this11 = this;
+          var _this15 = this;
 
           this.route.params.subscribe(function (params) {
-            _this11.topicService.getTopics(params.environment).subscribe(function (topics) {
-              _this11.topics = topics;
-              _this11.displayTopics = topics;
+            _this15.topicService.getTopics(params.environment).subscribe(function (topics) {
+              _this15.topics = topics;
+              _this15.displayTopics = topics;
             });
           });
         }
@@ -3198,7 +3821,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! D:\Workspaces\kafka-browser\kafka-browser-ui\src\main.ts */
+    /*! G:\Workspaces\kafka-browser\kafka-browser-ui\src\main.ts */
     "./src/main.ts");
     /***/
   }

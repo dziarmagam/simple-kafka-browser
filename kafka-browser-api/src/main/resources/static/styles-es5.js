@@ -400,11 +400,11 @@
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! D:\Workspaces\kafka-browser\kafka-browser-ui\node_modules\@angular\material\prebuilt-themes\deeppurple-amber.css */
+    /*! G:\Workspaces\kafka-browser\kafka-browser-ui\node_modules\@angular\material\prebuilt-themes\deeppurple-amber.css */
     "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css");
 
     module.exports = __webpack_require__(
-    /*! D:\Workspaces\kafka-browser\kafka-browser-ui\src\styles.css */
+    /*! G:\Workspaces\kafka-browser\kafka-browser-ui\src\styles.css */
     "./src/styles.css");
     /***/
   }
