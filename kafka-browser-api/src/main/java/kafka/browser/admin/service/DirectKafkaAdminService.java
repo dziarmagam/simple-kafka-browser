@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Function;
@@ -25,6 +27,7 @@ import java.util.stream.Stream;
 import javax.annotation.PreDestroy;
 
 import kafka.browser.admin.KafkaMessageGetter;
+import kafka.browser.admin.KafkaMessageGetter.SearchDetails;
 import kafka.browser.admin.KafkaMessageSender;
 import kafka.browser.admin.KafkaTopicOffsetFinder;
 import kafka.browser.admin.adapter.DirectKafkaAdminAdapter;
@@ -186,6 +189,8 @@ public class DirectKafkaAdminService implements KafkaAdminService {
 
     @Override
     public void sendMessage(String topic, String key, String message) {
+        if (!allowModification)
+            throw new ActionNotAllowed("cannot send message to this kafka cluster, action not allowed");
         kafkaMessageSender.sendMessage(topic, key, message);
     }
 
@@ -214,36 +219,43 @@ public class DirectKafkaAdminService implements KafkaAdminService {
 
     @Override
     public List<ConsumerRecord<byte[], byte[]>> findMessage(String topic, MessageQuery messageQuery, Instant from, Instant to) {
-
+        long time = System.currentTimeMillis();
         Function<ConsumerRecord<byte[], byte[]>, Boolean> messagePicker = getMessagePicker(messageQuery);
         var fromOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, from.toEpochMilli());
         var toOffsets = kafkaTopicOffsetFinder.findOffsetByTime(topic, to.toEpochMilli());
         Map<TopicPartition, Long> endOffsets = new HashMap<>();
-        if(toOffsets.containsValue(null)){
+        if (toOffsets.containsValue(null)) {
             var offsets = kafkaTopicOffsetFinder.findLastOffsets(toOffsets.keySet()).get(0).offsets;
             for (int i = 0; i < offsets.size(); i++) {
                 endOffsets.put(new TopicPartition(topic, i), offsets.get(i));
             }
         }
         Set<TopicPartition> topicPartitions = fromOffsets.keySet();
-        return topicPartitions.stream()
-                .flatMap(it -> {
-                    if (fromOffsets.get(it) == null) return Stream.empty();
-                    var toOffset = toOffsets.get(it) == null ? endOffsets.get(it) : toOffsets.get(it).offset();
-                    return kafkaMessageGetter.getMessages(messagePicker, it, fromOffsets.get(it).offset(), toOffset).stream();
-                })
-                .collect(Collectors.toList());
+        var partitionToSearchDetails = new HashMap<TopicPartition, SearchDetails>();
+        topicPartitions.forEach(it -> {
+            if (fromOffsets.get(it) != null) {
+                var toOffset = toOffsets.get(it) == null ? endOffsets.get(it) : toOffsets.get(it).offset();
+                partitionToSearchDetails.put(it, new SearchDetails(fromOffsets.get(it).offset(), toOffset));
+            }
+        });
+        List<ConsumerRecord<byte[], byte[]>> collect = kafkaMessageGetter.getMessages(messagePicker, partitionToSearchDetails);
+        System.out.println("Fine message time " + ((System.currentTimeMillis() - time) / 1000));
+        return collect;
     }
 
     private Function<ConsumerRecord<byte[], byte[]>, Boolean> getMessagePicker(MessageQuery messageQuery) {
         switch (messageQuery.queryType) {
-            case Message: return it -> new String(it.value()).contains((String)messageQuery.value);
-            case Key: return it -> new String(it.key()).contains((String)messageQuery.value);
-            case KeyAndMessage: return it -> {
-                KeyMessageQueryValue value = (KeyMessageQueryValue) messageQuery.value;
-                return new String(it.key()).contains(value.key) && new String(it.value()).contains(value.message);
-            };
-            default: throw new RuntimeException("unsupported message query");
+            case Message:
+                return it -> new String(it.value()).contains((String) messageQuery.value);
+            case Key:
+                return it -> new String(it.key()).contains((String) messageQuery.value);
+            case KeyAndMessage:
+                return it -> {
+                    KeyMessageQueryValue value = (KeyMessageQueryValue) messageQuery.value;
+                    return new String(it.key()).contains(value.key) && new String(it.value()).contains(value.message);
+                };
+            default:
+                throw new RuntimeException("unsupported message query");
         }
     }
 
