@@ -232,16 +232,15 @@ public class DirectKafkaAdminService implements KafkaAdminService {
         }
         Set<TopicPartition> topicPartitions = fromOffsets.keySet();
         var partitionToSearchDetails = new HashMap<TopicPartition, SearchDetails>();
-        System.out.println(fromOffsets);
-        System.out.println(toOffsets);
         topicPartitions.forEach(it -> {
             if (fromOffsets.get(it) != null) {
                 var toOffset = toOffsets.get(it) == null ? endOffsets.get(it) : toOffsets.get(it).offset();
                 partitionToSearchDetails.put(it, new SearchDetails(fromOffsets.get(it).offset(), toOffset));
             }
         });
-        List<ConsumerRecord<byte[], byte[]>> collect = kafkaMessageGetter.getMessages(messagePicker, partitionToSearchDetails);
-        System.out.println("Fine message time " + ((System.currentTimeMillis() - time) / 1000));
+        List<ConsumerRecord<byte[], byte[]>> collect = partitionToSearchDetails.isEmpty() ?
+                Collections.emptyList() : kafkaMessageGetter.getMessages(messagePicker, partitionToSearchDetails);
+        System.out.println("Find message time " + ((System.currentTimeMillis() - time) / 1000));
         return collect;
     }
 

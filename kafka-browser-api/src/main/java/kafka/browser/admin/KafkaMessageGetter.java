@@ -116,7 +116,8 @@ public class KafkaMessageGetter {
                 if (returnSize > bytesReturnLimit) throw new MessageToBig(bytesReturnLimit);
                 lastRecordMap.forEach((key, value) -> {
                     TopicPartition topicPartition = new TopicPartition(topic, key);
-                    if (searchDetails.get(topicPartition).endOffset <= value && kafkaConsumer.assignment().contains(topicPartition)) {
+                    if (searchDetails.get(topicPartition).endOffset - 1 <= value && kafkaConsumer.assignment().contains(topicPartition)) {
+                        System.out.println("Removing " + topicPartition);
                         var newAssignments = kafkaConsumer.assignment().stream().filter(it -> !it.equals(topicPartition)).collect(Collectors.toList());
                         kafkaConsumer.assign(newAssignments);
                     }
