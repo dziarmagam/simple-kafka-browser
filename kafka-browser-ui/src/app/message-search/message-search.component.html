@@ -1,0 +1,23 @@
+<div class="message-finder">
+    <label for="topics">Topics</label>
+    <select [(ngModel)]="selectedTopic" id="topics">
+        <option class="topics-option" [selected]="topic === selectedTopic" *ngFor="let topic of topics">
+            {{topic.name}}
+        </option>
+    </select>
+    <div>
+
+        <label>Key</label>
+        <input [(ngModel)]="key" type="text">
+    </div>
+    <div>
+
+        <label>Message</label>
+        <input [(ngModel)]="message" type="text">
+    </div>
+    <button class="button" type="submit" (click)="onMessageInput()">Search</button>
+
+    <p>{{foundMessage}}</p>
+
+
+</div>
