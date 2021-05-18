@@ -232,6 +232,8 @@ public class DirectKafkaAdminService implements KafkaAdminService {
         }
         Set<TopicPartition> topicPartitions = fromOffsets.keySet();
         var partitionToSearchDetails = new HashMap<TopicPartition, SearchDetails>();
+        System.out.println(fromOffsets);
+        System.out.println(toOffsets);
         topicPartitions.forEach(it -> {
             if (fromOffsets.get(it) != null) {
                 var toOffset = toOffsets.get(it) == null ? endOffsets.get(it) : toOffsets.get(it).offset();
