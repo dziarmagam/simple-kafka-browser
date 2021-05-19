@@ -1,7 +1,11 @@
 <div class="message-finder">
+    <div class="filter">
+        <label for="filter-input" class="filter-label">Filter:</label>
+        <input id="filter-input" class="filter-input" (keyup)="onFilterInput($event)"/>
+    </div>
     <label for="topics">Topics</label>
     <select [(ngModel)]="selectedTopic" id="topics">
-        <option class="topics-option" [selected]="topic === selectedTopic" *ngFor="let topic of topics">
+        <option class="topics-option" [selected]="topic === selectedTopic" *ngFor="let topic of filtredTopics()">
             {{topic.name}}
         </option>
     </select>
@@ -17,7 +21,21 @@
     </div>
     <button class="button" type="submit" (click)="onMessageInput()">Search</button>
 
-    <p>{{foundMessage}}</p>
-
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Partition</th>
+            <th>Offset</th>
+            <th>Key</th>
+            <th>Message</th>
+        </tr>
+        <tr *ngFor="let message of messages">
+            <td>{{toDate(message.timestamp)}}</td>
+            <td>{{message.partition}}</td>
+            <td>{{message.offset}}</td>
+            <td>{{message.key}}</td>
+            <td>{{message.message}}</td>
+        </tr>
+    </table>
 
 </div>

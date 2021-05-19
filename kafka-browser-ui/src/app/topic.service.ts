@@ -51,21 +51,21 @@ export class TopicService {
   findMessage(topic: string, environment: string, key: string, message: string): Observable<any> {
     const url = this.serverUrl + environment + '/topics/' + topic + "/find";
     if (key === undefined || key.trim() === "") {
-      return this.httpClient.post(url, {
+      return this.httpClient.post<KafkaRecord[]>(url, {
         queryType: "Message",
         value: btoa(message.trim()),
         from: Date.now() - 1000 * 60 * 60, // 60min
         to: Date.now()
       });
     } else if (message === undefined || message.trim() === "") {
-      return this.httpClient.post(url, {
+      return this.httpClient.post<KafkaRecord[]>(url, {
         queryType: "Key",
         value: btoa(key.trim()),
         from: Date.now() - 1000 * 60 * 60, // 60min
         to: Date.now()
       });
     } else {
-      return this.httpClient.post(url, {
+      return this.httpClient.post<KafkaRecord[]>(url, {
         queryType: "KeyAndMessage",
         value: {
           key: btoa(key.trim()),

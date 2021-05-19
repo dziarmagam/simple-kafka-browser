@@ -18,8 +18,9 @@ export class MessageSearchComponent implements OnInit {
   message: string = "";
   key: string = "";
   environment: string;
-  foundMessage: string = "loading...";
+  messages: KafkaRecord[] = [];
 
+  private filterValue: string = ""
 
   constructor(
     private topicService: TopicService,
@@ -37,20 +38,28 @@ export class MessageSearchComponent implements OnInit {
     })
   }
 
+  filtredTopics(){
+    return this.topics.filter(it => it.name.toLowerCase().includes(this.filterValue.toLowerCase()))
+  }
+
+  onFilterInput(event){
+    this.filterValue = event.target.value.toLowerCase();
+  }
+
   onMessageInput() {
     if (this.key !== "" || this.message !== "") {
       this.topicService.findMessage(this.selectedTopic, this.environment, this.key, this.message)
       .subscribe(response => {
-        if (typeof response === 'object') {
-          this.foundMessage = JSON.stringify(response);
-        } else {
-          this.foundMessage = response;
-        }
+       this.messages = response.sort((a,b) => a.timestamp > b.timestamp ? -1: ((b.timestamp > a.timestamp) ? 1 : 0))
       },
         error => {
           this.errorService.showError(error.error);
         });
     }
+  }
+
+  toDate(timestamp: number){
+    return new Date(timestamp).toISOString();
   }
 
 }
