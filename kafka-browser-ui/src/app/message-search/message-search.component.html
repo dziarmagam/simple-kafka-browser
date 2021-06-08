@@ -1,7 +1,7 @@
 <div class="message-finder">
     <div class="filter">
         <label for="filter-input" class="filter-label">Filter:</label>
-        <input id="filter-input" class="filter-input" (keyup)="onFilterInput($event)"/>
+        <input id="filter-input" class="filter-input" (keyup)="onFilterInput($event)" />
     </div>
     <label for="topics">Topics</label>
     <select [(ngModel)]="selectedTopic" id="topics">
@@ -9,8 +9,10 @@
             {{topic.name}}
         </option>
     </select>
-    <label for="searchSince">Search messages since last secounds</label>
-    <input id="searchSince" type=text [(ngModel)]="searchSince">
+    <div>
+        <label for="searchSince">Search messages since last secounds</label>
+        <input id="searchSince" type=text [(ngModel)]="searchSince">
+    </div>
     <div>
 
         <label>Key</label>

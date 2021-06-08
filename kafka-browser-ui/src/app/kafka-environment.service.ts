@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -19,6 +19,9 @@ export class KafkaEnvironmentService {
   ) { }
 
   getAwailableEnvironments(): Observable<KafkaEnvironment[]> {
+    return of([{
+      name: "test"
+    }])
     return this.httpClient.get<KafkaEnvironment[]>(this.serverUrl + '/environments');
   }
 
