@@ -48,20 +48,20 @@ export class TopicService {
     });
   }
 
-  findMessage(topic: string, environment: string, key: string, message: string): Observable<any> {
+  findMessage(topic: string, environment: string, key: string, message: string, searchSince: number): Observable<any> {
     const url = this.serverUrl + environment + '/topics/' + topic + "/find";
     if (key === undefined || key.trim() === "") {
       return this.httpClient.post<KafkaRecord[]>(url, {
         queryType: "Message",
         value: btoa(message.trim()),
-        from: Date.now() - 1000 * 60 * 60, // 60min
+        from: Date.now() - 1000 * searchSince,
         to: Date.now()
       });
     } else if (message === undefined || message.trim() === "") {
       return this.httpClient.post<KafkaRecord[]>(url, {
         queryType: "Key",
         value: btoa(key.trim()),
-        from: Date.now() - 1000 * 60 * 60, // 60min
+        from: Date.now() - 1000 * searchSince,
         to: Date.now()
       });
     } else {
@@ -71,11 +71,20 @@ export class TopicService {
           key: btoa(key.trim()),
           message:  btoa(message.trim())
         },
-        from: Date.now() - 1000 * 60 * 60, // 60min
+        from: Date.now() - 1000 * searchSince,
         to: Date.now()
       });
     }
 
   }
 
+}
+
+export class KafkaRecord {
+  key: string;
+  message: string;
+  topic: string;
+  partition: number;
+  offset: number;
+  timestamp: number;
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorServiceService } from '../error-service.service';
-import { TopicService } from '../topic.service';
+import { KafkaRecord, TopicService } from '../topic.service';
 
 @Component({
   selector: 'app-message-search',
@@ -17,6 +17,7 @@ export class MessageSearchComponent implements OnInit {
   selectedTopic: string;
   message: string = "";
   key: string = "";
+  searchSince: number = 60 * 60
   environment: string;
   messages: KafkaRecord[] = [];
 
@@ -48,7 +49,7 @@ export class MessageSearchComponent implements OnInit {
 
   onMessageInput() {
     if (this.key !== "" || this.message !== "") {
-      this.topicService.findMessage(this.selectedTopic, this.environment, this.key, this.message)
+      this.topicService.findMessage(this.selectedTopic, this.environment, this.key, this.message, this.searchSince)
       .subscribe(response => {
        this.messages = response.sort((a,b) => a.timestamp > b.timestamp ? -1: ((b.timestamp > a.timestamp) ? 1 : 0))
       },
