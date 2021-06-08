@@ -249,11 +249,11 @@ public class DirectKafkaAdminService implements KafkaAdminService {
             case Message:
                 return it -> new String(it.value()).contains((String) messageQuery.value);
             case Key:
-                return it -> new String(it.key()).contains((String) messageQuery.value);
+                return it -> new String(it.key()).equals(messageQuery.value);
             case KeyAndMessage:
                 return it -> {
                     KeyMessageQueryValue value = (KeyMessageQueryValue) messageQuery.value;
-                    return new String(it.key()).contains(value.key) && new String(it.value()).contains(value.message);
+                    return new String(it.key()).equals(value.key) && new String(it.value()).contains(value.message);
                 };
             default:
                 throw new RuntimeException("unsupported message query");
