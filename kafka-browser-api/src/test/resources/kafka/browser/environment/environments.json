@@ -2,11 +2,15 @@
   {
     "bootstrapServer": "testServer1",
     "name": "name1",
-    "isModifiable": false
+    "isModifiable": false,
+    "username": "username",
+    "password": "password"
   },
   {
     "bootstrapServer": "testServer2",
     "name": "name2",
-    "isModifiable": true
+    "isModifiable": true,
+    "username": "username",
+    "password": "password"
   }
 ]

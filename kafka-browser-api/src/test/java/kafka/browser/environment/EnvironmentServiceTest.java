@@ -24,8 +24,8 @@ class EnvironmentServiceTest {
         //then
         Assertions.assertThat(environments)
                 .containsExactly(
-                        new Environment("testServer1", "name1", false),
-                        new Environment("testServer2", "name2", true)
+                        new Environment("testServer1", "name1", false, "username" , "password"),
+                        new Environment("testServer2", "name2", true, "username" , "password")
                 );
     }
 

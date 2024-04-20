@@ -17,7 +17,7 @@ class KafkaConsumerPoolTest {
         String clientId = "clientId";
         Config config = new Config("filePath", clientId, 3, 100);
         String envName = "test";
-        Environment environment = new Environment("localhost:9911", envName, false);
+        Environment environment = new Environment("localhost:9911", envName, false,"user","pass");
         var kafkaConsumerPool = new KafkaConsumerPool(config, environment);
         //when
         try (var connection = kafkaConsumerPool.getConsumerConnection()) {
@@ -32,7 +32,7 @@ class KafkaConsumerPoolTest {
         String clientId = "clientId";
         Config config = new Config("filePath", clientId, 3, 100);
         String envName = "test";
-        Environment environment = new Environment("localhost:9911", envName, false);
+        Environment environment = new Environment("localhost:9911", envName, false, "user" , "pass");
         var kafkaConsumerPool = new KafkaConsumerPool(config, environment);
         //when
         try (var connection = kafkaConsumerPool.getConsumerConnection()) {
@@ -48,7 +48,7 @@ class KafkaConsumerPoolTest {
         String clientId = "clientId";
         Config config = new Config("filePath", clientId, 3, 100);
         String envName = "test";
-        Environment environment = new Environment("localhost:9911", envName, false);
+        Environment environment = new Environment("localhost:9911", envName, false, "user" , "pass");
         var kafkaConsumerPool = new KafkaConsumerPool(config, environment);
         //when
         List<String> consumerNames = kafkaConsumerPool.getAvailableConsumersNames();

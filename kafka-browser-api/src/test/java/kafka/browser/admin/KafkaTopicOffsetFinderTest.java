@@ -11,7 +11,6 @@ import java.util.Map;
 
 import kafka.browser.connection.KafkaConsumerPool;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

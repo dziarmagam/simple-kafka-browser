@@ -11,7 +11,7 @@ class AdminClientCreatorTest {
     @Test
     void getAdminClient() {
         //given
-        var environment = new Environment("http://localhost:9092", "test", false);
+        var environment = new Environment("http://localhost:9092", "test", false,"user","pass");
         //when
         var properties = new AdminClientCreator(environment).createProperties(environment);
         //then

@@ -19,7 +19,7 @@ class KafkaAdminServiceManagerTest {
         //given
         Config config = new Config("filePath", "clientId", 100, 100);
         EnvironmentService environmentService = Mockito.mock(EnvironmentService.class);
-        Mockito.when(environmentService.getEnvironments()).thenReturn(List.of(new Environment("localhost:9911", "test", false)));
+        Mockito.when(environmentService.getEnvironments()).thenReturn(List.of(new Environment("localhost:9911", "test", false,"user","pass")));
         final var kafkaAdminServiceManager = new KafkaAdminServiceManager(environmentService, config);
         final var expectedService = Mockito.mock(KafkaAdminService.class);
         //when

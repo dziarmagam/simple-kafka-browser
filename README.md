@@ -1,5 +1,5 @@
 # simple-kafka-browser
-Small application for browsering kafka clusters
+Small application for browsing kafka clusters
 
 
 ## Starting application:
@@ -8,7 +8,7 @@ Require java 11 or newer.
 ### Installation
 Download simple-kafka-browser.bar.gz and unpack it.
 For linux run bin/start.sh.
-For windows run /bin/start.sh using gitbash or simmilar
+For windows run /bin/start.sh using gitbash or similar
 
 You can also run application simple by "java -jar kafka-browser*.jar" command
 
@@ -25,8 +25,8 @@ application.properties:
 - environments.file.path : path to file containing each cluster definition (default "environments.json")
 - connection.pool.size : connection pool used for accessing kafka broker (default "10")
 
-envrionment.json:
-Infromation about each cluster in json format:
+environment.json:
+Information about each cluster in json format:
 ```
 [
   {
@@ -58,6 +58,6 @@ Infromation about each cluster in json format:
 
 ## Known issues
 - Poor error handling
-- Server may not reconnect to kafka claster when connection is lost
+- Server may not reconnect to kafka cluster when connection is lost
 - Navigation between cluster can fail
 

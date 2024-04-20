@@ -29,7 +29,7 @@ public class KafkaConsumerPool implements Closeable {
         this.config = config;
         this.availableConnections = new ArrayBlockingQueue<>(config.getConnectionPoolSize());
         this.bootstrapServer = environment.bootstrapServer;
-        initConnectionPool(environment.name);
+        initConnectionPool(environment);
     }
 
     public Consumer<byte[], byte[]> getConsumerConnection() {
@@ -64,19 +64,24 @@ public class KafkaConsumerPool implements Closeable {
         }
     }
 
-    private void initConnectionPool(String envName) {
+    private void initConnectionPool(Environment env) {
         for (int i = 0; i < config.getConnectionPoolSize(); i++) {
-            var connection = new KafkaConsumerConnection(createProperties(config, i + "_" + envName));
+            var connection = new KafkaConsumerConnection(createProperties(config, env, i + "_" + env.name));
             availableConnections.add(connection);
             connections.add(connection);
         }
     }
 
-    private Properties createProperties(Config config, String clientSuffix) {
+    private Properties createProperties(Config config, Environment env, String clientSuffix) {
         Properties properties = new Properties();
         properties.put("bootstrap.servers", bootstrapServer);
         properties.put("client.id", config.getClientId() + "_" + clientSuffix);
         properties.put("group.id", config.getClientId() + "_" + clientSuffix);
+        properties.put("security.protocol", "SASL_SSL");
+        properties.put("sasl.mechanism", "PLAIN");
+        if ((env.username != null && !env.username.isBlank() && (env.password != null && !env.password.isBlank()))) {
+            properties.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule   required username='" + env.username + "'   password='" + env.password + "';");
+        }
         return properties;
     }
 
